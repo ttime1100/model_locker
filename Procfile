@@ -1,1 +1,1 @@
-web: gunicorn wavy.wsgi --log-file -
+web: gunicorn modellocker.wsgi --log-file -
