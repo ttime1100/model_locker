@@ -47,8 +47,6 @@ INSTALLED_APPS = [
     'django_google_maps',
     'geoposition',
     'embed_video',
-    'imagekit',
-    'pinax.events',
     'pinax.messages',
 ]
 

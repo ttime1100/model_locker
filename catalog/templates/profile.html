@@ -1,5 +1,5 @@
 {% extends 'base.html'%}
-{% load pinax_events_tags %}
+
 {% load pinax_messages_tags %}
 
 
@@ -103,36 +103,7 @@
 
 
 
-<section class="event-list">
-        {% events as event_items %}
-        {% for event in event_items %}
-        {% load static%}
-            <article class="event" style="{% if event.secondary_image_thumb %}background-image:url({% static event.secondary_image_thumb.url %});{% endif %}">
-                <section class="event-img">
-                    <a href="{{ event.url }}">
-                        {% if event.image_thumb %}<img src="{{ event.image_thumb.url }}" width="200" />{% endif %}
-                    </a>
-                </section>
-                <ul class="event-details">
-                    <li>
-                        <h2><a href="{{ event.url }}">{{ event.title }}</a></h2>
-                    </li>
-                    <li class="meta">
-                        <span>
-                            Where: {{ event.where }}
-                        </span>
-                        <span>
-                            When: {{ event.start_date }}&endash;{{ event.end_start }}
-                        </span>
-                    </li>
-                    <li class="event-description">
-                        {{ event.what_html|safe }}
-                    </li>
-                </ul>
-            </article>
-        {% endfor %}
-    </section>
-</div>
+
 
     
 {% endblock %}
