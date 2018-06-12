@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="jumbotron w-50">
-  <h2 class="text-center">Sign up</h2>
+  <div class="jumbotron mt-5 text-center">
+  <h2 class="text-center mt-3">Sign up</h2>
 
 
-<div class="container mt-2 text-center">
+<div class="container mt-5 text-center">
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}

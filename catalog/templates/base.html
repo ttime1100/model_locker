@@ -87,9 +87,9 @@
                      <form class="form-inline text-center ml-5" method="post" action="{% url 'login' %}">
                         {% csrf_token %}
 
-                        <p class="ml-1">{{ form.username.label_tag }}</p>
+                        <p class="ml-1 text-white">{{ form.username.label_tag }}</p>
                         <p class="ml-2">{{ form.username }}</p>
-                        <p class="ml-1">{{ form.password.label_tag }}</p>
+                        <p class="ml-1 text-white">{{ form.password.label_tag }}</p>
                         <p class="ml-2">{{ form.password }}</p>
                        <div>
                         <input class="btn btn-success" type="submit" value="Login" />
