@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+  <div class="container">
+
+  <h1 class="text-center display-4">The Wave</h1>
+  <p class="text-center">Welcome to The Wave<br/>Do You...No Judgement</p>
+
+</div>
+</div>
+
+<br>
+<p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.<br>{% if user.is_authenticated %}Welcome Back!{% else %}<a href="{% url 'signup' %}">Sign Up</a>{% endif %}</p>
+
+
+{% endblock %}

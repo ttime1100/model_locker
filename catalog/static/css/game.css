@@ -1,0 +1,45 @@
+body {
+	font-family: 'Lobster', cursive;
+}
+
+
+
+@media (max-width: 480px){
+    header.masthead {
+    padding-top: 12rem;
+    padding-bottom: 12rem;
+}
+	#menu-toggle{
+		display:block;
+	}
+	.myhead{
+		font-size:20px;
+	}
+	.mylead{
+		font-size:16px;
+	}
+}
+@media (max-width: 600px) and (min-width: 481px){
+	#menu-toggle{
+		display:block;
+	}	
+}
+
+@media (min-width: 768px) {
+  .display-4 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .h-md-250 { height: 250px; }
+}
+
+@media (min-width: 40em) {
+  .blog-title {
+    font-size: 3.5rem;
+  }
+}
+
+#map-canvas {
+                height: 600px;

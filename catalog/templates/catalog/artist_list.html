@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if user.is_authenticated%}
+    <h1 class="mt-5">Artist</h1>
+<!-- if songs are present will list all songs -->
+    {% if artist_list %}
+      <!-- for loop through the songs with a link attached  -->
+      {% for artist in artist_list %}
+      <p>
+        <!-- accessing variable -->
+        <a href="{{ artist.get_absolute_url }}">{{ artist.stage_name }}</a> ({{artist.first_name}})
+      </p>
+      {% endfor %}
+    <!-- if none is true then the else statement shows up -->
+    {% else %}
+      <p>There are no songs</p>
+      <!-- end if statement -->
+    {% endif %}
+    {% endif %}
+{% endblock %}

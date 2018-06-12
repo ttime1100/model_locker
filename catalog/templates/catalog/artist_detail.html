@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1 class="mt-5">{{ artist.stage_name }}</h1>
+
+  <p><strong>Artist:</strong> <a href="">{{ artist.first_name }}</a></p>
+  <p><strong>Genre:</strong> {% for genre in song.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+
+{% endblock %}

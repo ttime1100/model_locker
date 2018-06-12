@@ -1,0 +1,206 @@
+{% load static %}<!DOCTYPE html>
+  
+  <html lang="en">
+  <head>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Model Locker</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
+    
+    <!-- MoneyTime Static Files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+      <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/js/mdb.min.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB09mtj2SJxUKjaclYYsP0N-9y69baPVbA&callback=initMap"
+    async defer></script>
+ 
+      <!-- MoneyTime Static Files -->
+    <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+    {{ form.media }}
+  </head>
+
+<body>
+
+  {% block sidebar %}
+
+        <header>
+          <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+            <div class="container">
+
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="#">Model Locker</a>
+
+                <!-- Collapse button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Collapsible content -->
+                <div class="collapse navbar-collapse" id="basicExampleNav">
+
+                    <!-- Links -->
+                   <ul class="navbar-nav text-primary">
+                    {% if user.is_authenticated %}
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Explore</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'gigs' %}">Gigs/Events</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#">Inbox</a>
+                     </li>
+                    
+                     <li class="nav-item">
+                        <a class="nav-link" href="#">Network</a>
+                     </li>
+                  </ul>
+                   <ul class="navbar-nav ml-auto ">
+                      <li class="nav-item avatar-profile">
+                        <a class="nav-link" href="{% url 'logout'%}?next={{request.path}}">LogOut<img src="#" class="img-fluid"></a>
+                     </li>
+                     {% else %}
+                  </ul>
+                    <!-- Links -->
+                   
+
+                     <form class="form-inline text-center ml-5" method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+
+                        <p class="ml-1">{{ form.username.label_tag }}</p>
+                        <p class="ml-2">{{ form.username }}</p>
+                        <p class="ml-1">{{ form.password.label_tag }}</p>
+                        <p class="ml-2">{{ form.password }}</p>
+                       <div>
+                        <input class="btn btn-success" type="submit" value="Login" />
+                        </div>
+                    </form>
+                    {% endif %}
+                    <!-- Social Icon  -->
+                    <ul class="navbar-nav nav-flex-icons">
+                        <li class="nav-item">
+                            <a class="nav-link"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"><i class="fa fa-instagram"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Collapsible content -->
+
+            </div>
+        </nav>
+        <!--/.Navbar-->
+
+                <!--Mask-->
+        <div id="intro" class="view">
+
+            <div class="mask rgba-black-strong">
+
+                <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+
+                    <div class="row d-flex justify-content-center text-center">
+
+                        <div class="col-md-10">
+
+                            <!-- Heading -->
+                            <h2 class="display-4 font-weight-bold white-text pt-5 mb-2">Model Locker</h2>
+
+                            <!-- Divider -->
+                            <hr class="hr-light">
+
+                            <!-- Description -->
+                            <h4 class="white-text my-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti consequuntur.</h4>
+                            <button type="button" class="btn btn-outline-white">Read more<i class="fa fa-book ml-2"></i></button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+      </header>
+      {% endblock %}
+
+
+
+      {% block content %}{% endblock %}
+
+
+            <!-- Footer -->
+         <!--Footer-->
+    <footer class="page-footer font-small unique-color-dark pt-0">
+
+        <!-- Social buttons -->
+        <div class="primary-color">
+            <div class="container">
+                <!--Grid row-->
+                <div class="row py-4 d-flex align-items-center">
+
+                    <!--Grid column-->
+                    <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+                        <h6 class="mb-0 white-text">Get connected with us on social networks!</h6>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-6 col-lg-7 text-center text-md-right">
+                        <!--Facebook-->
+                        <a class="fb-ic ml-0">
+                            <i class="fa fa-facebook white-text mr-4"> </i>
+                        </a>
+                        <!--Twitter-->
+                        <a class="tw-ic">
+                            <i class="fa fa-twitter white-text mr-4"> </i>
+                        </a>
+                        <!--Google +-->
+                        <a class="gplus-ic">
+                            <i class="fa fa-google-plus white-text mr-4"> </i>
+                        </a>
+                        <!--Linkedin-->
+                        <a class="li-ic">
+                            <i class="fa fa-linkedin white-text mr-4"> </i>
+                        </a>
+                        <!--Instagram-->
+                        <a class="ins-ic">
+                            <i class="fa fa-instagram white-text mr-lg-4"> </i>
+                        </a>
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+            </div>
+    {% block javascript %}{% endblock %}
+
+
+
+
+</body>
+</html>

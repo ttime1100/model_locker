@@ -1,0 +1,138 @@
+{% extends 'base.html'%}
+{% load pinax_events_tags %}
+{% load pinax_messages_tags %}
+
+
+{% block content %}
+
+
+        <div class="mt-5 pt-3 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2 mt-3">{{ user.first_name }}</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <a href="{% url 'pinax_messages:inbox' %}"><i class="fa fa-envelope"></i>Inbox</a>
+            </div>
+          </div>
+
+
+  <div class="jumbotron">
+      <h3 class="username text-center mt-5">{{ user.get_username }}</h3>
+        <p class="text-center">City: {{ user.userprofile.city }}</p>
+
+        <br>
+
+      {% if user %}
+      <div class="text-center">
+          <button class="btn btn-primary follow">Follow</button>
+      </div>
+      {% endif %}
+
+  </div>
+
+
+  <div class="container-fluid">
+    <div class="row">
+
+<div class="col">
+<div class="card text-white bg-success">
+  <div class="card-header">Gallery</div>
+  <div class="card-body">
+    <h4 class="card-title">Success card title</h4>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+</div>
+
+<div class="col">
+<div class="card text-white bg-success mb-3">
+  <div class="card-header">Events Calender</div>
+  <div class="card-body">
+    <h4 class="card-title">Success card title</h4>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+</div>
+
+<div class="col">
+<div class="card text-white bg-success mb-3">
+  <div class="card-header">Make Connections</div>
+  <div class="card-body">
+    <h4 class="card-title">Success card title</h4>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+</div>
+
+</div>
+</div>
+
+
+
+
+    {% if user %}
+   {% for messages in message %} 
+  <div class="container-fluid scrollbar-ripe-malinka">
+     
+    <div class="list-group mt-3">
+  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active"></a>
+      <div>
+    {% if user.userprofile.pic %}
+        {% load static %}
+        <img src="{{ user.userprofile.image.url }}" alt="" class="media-object img-fluid thum-nail w-25 h-25">
+    {% else %}
+        <img src="#" alt="" class="media-object img-fluid thum-nail w-25 h-25">
+    {% endif %}   
+      </div>
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{ user.username }}</h5>
+        <small>3 days ago</small>
+      </div>
+        <p class="mb-1">{{ messages.post }}</p>
+        {% if messages.image %}
+        {% load static %}
+        <img src="{{ messages.image.url }}" alt="" class="media-object img-fluid thum-nail w-25 h-25">
+        {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+</div>
+
+
+
+
+
+<section class="event-list">
+        {% events as event_items %}
+        {% for event in event_items %}
+        {% load static%}
+            <article class="event" style="{% if event.secondary_image_thumb %}background-image:url({% static event.secondary_image_thumb.url %});{% endif %}">
+                <section class="event-img">
+                    <a href="{{ event.url }}">
+                        {% if event.image_thumb %}<img src="{{ event.image_thumb.url }}" width="200" />{% endif %}
+                    </a>
+                </section>
+                <ul class="event-details">
+                    <li>
+                        <h2><a href="{{ event.url }}">{{ event.title }}</a></h2>
+                    </li>
+                    <li class="meta">
+                        <span>
+                            Where: {{ event.where }}
+                        </span>
+                        <span>
+                            When: {{ event.start_date }}&endash;{{ event.end_start }}
+                        </span>
+                    </li>
+                    <li class="event-description">
+                        {{ event.what_html|safe }}
+                    </li>
+                </ul>
+            </article>
+        {% endfor %}
+    </section>
+</div>
+
+    
+{% endblock %}
