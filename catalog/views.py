@@ -155,6 +155,7 @@ def change_password(request):
 
     return render(request, 'change_password.html', {'form':form})
 
+@login_required
 def gigs(request):
     pois = PointOfInterest.objects.all()
     return render(request, 'catalog/gigs.html', {'pois':pois})
