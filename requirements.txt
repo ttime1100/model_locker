@@ -23,7 +23,7 @@ pygal==2.4.0
 pygame==1.9.3
 pytz==2018.3
 requests==2.18.4
-urllib3==1.22
+urllib3==1.24.2
 whitenoise==3.3.1
 imagekit==1.0.6
 click==6.7
